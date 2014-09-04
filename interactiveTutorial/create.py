@@ -47,50 +47,46 @@ class _TutorialPage(QtGui.QWidget):
         layout.addWidget(self.combo_setNext)
 
 
-#     def _addToClicked(self, parent):
-#         for ch in parent.children():
-#            # if isinstance(ch, QtGui.QWidget):
-#             print ch#.name()
-#             clicked = getattr(ch, 'clicked', None) 
-#             if clicked:
-#                 print 55
-#                 clicked.connect(self._y)
-#             self._addToClicked(ch)
-
-
     def chooseWidget(self):
+        print 33
         self.btn_setWidget.setEnabled(False)
         self.origPressEvent = self._mainwindow.mousePressEvent
         self._mainwindow.mousePressEvent = self._getChildWidget
         self._mainwindow.grabMouse()
+        print 66
         
 
         
     def _getChildWidget(self, evt):
+        #reset state
+        self._mainwindow.mousePressEvent = self.origPressEvent
+        self._mainwindow.mousePressEvent(evt)
+        self._mainwindow.releaseMouse()
+
+        #grad child
         child = self._mainwindow.childAt(evt.pos())
         nameFn = getattr(child, 'name', None)
+        #name label
         if nameFn:
             text = nameFn()
         else:
             text = str(child)
         self.widget.setText(text)
-        
-        classes = [x[1] for x in inspect.getmembers(child)]# if isinstance(x, QtCore.pyqtSignal)]
-        signals = [x for x in classes if type(x) in (QtCore.pyqtSignal, QtCore.pyqtBoundSignal)]
-
-        signal_names = [x.__class__.__name__ for x in signals]
-        
+        #get signals of chosen child
+        members = [x[1] for x in inspect.getmembers(child)]# if isinstance(x, QtCore.pyqtSignal)]
+        signals = [x for x in members if type(x) in (QtCore.pyqtSignal, QtCore.pyqtBoundSignal)]
+        signal_names = [str(x) for x in signals]
+        #cut out the signal name 
+        signal_names = [x[x.index("signal")+7:x.index(" of ")] for x in signal_names]
+        #update combo boxes
         self.combo_setCondition.clear()
         self.combo_setCondition.addItems(signal_names)
         
         self.combo_setCondition.show()
         self.combo_setNext.show()
 
-        #reset state
-        self._mainwindow.mousePressEvent = self.origPressEvent
-        self._mainwindow.mousePressEvent(evt)
-        self._mainwindow.releaseMouse()
         self.btn_setWidget.setEnabled(True)
+
         
 
 
