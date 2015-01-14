@@ -1,0 +1,36 @@
+interactiveTutorial package
+===========================
+
+.. automodule:: interactiveTutorial
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+interactiveTutorial.CreateTutorial module
+-----------------------------------------
+
+.. automodule:: interactiveTutorial.CreateTutorial
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+interactiveTutorial.RunTutorial module
+--------------------------------------
+
+.. automodule:: interactiveTutorial.RunTutorial
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+interactiveTutorial.TutorialMenu module
+---------------------------------------
+
+.. automodule:: interactiveTutorial.TutorialMenu
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+

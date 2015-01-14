@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>interactiveTutorial package &mdash; interactiveTutorial  documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="interactiveTutorial  documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to interactiveTutorial’s documentation!" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> interactiveTutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">interactiveTutorial package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-interactiveTutorial.CreateTutorial">interactiveTutorial.CreateTutorial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-interactiveTutorial.RunTutorial">interactiveTutorial.RunTutorial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-interactiveTutorial.TutorialMenu">interactiveTutorial.TutorialMenu module</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">interactiveTutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>interactiveTutorial package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/interactiveTutorial.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-interactiveTutorial">
+<span id="interactivetutorial-package"></span><h1>interactiveTutorial package<a class="headerlink" href="#module-interactiveTutorial" title="Permalink to this headline">¶</a></h1>
+<p>An interactive tutorial viewer and editor based on PyQt4.</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-interactiveTutorial.CreateTutorial">
+<span id="interactivetutorial-createtutorial-module"></span><h2>interactiveTutorial.CreateTutorial module<a class="headerlink" href="#module-interactiveTutorial.CreateTutorial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial">
+<em class="property">class </em><code class="descclassname">interactiveTutorial.CreateTutorial.</code><code class="descname">CreateTutorial</code><span class="sig-paren">(</span><em>openFunction</em>, <em>saveFunction</em>, <em>tutorialFolder=None</em>, <em>readonly=False</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtGui.QWidget</span></code></p>
+<p>Window to create new and modify saved interactive tutorials
+running within the describing program</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">_TestProgram</span> <span class="kn">import</span> <span class="n">TestProgram</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([])</span>
+</pre></div>
+</div>
+<p>Our test gui:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">win</span> <span class="o">=</span> <span class="n">TestProgram</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The tutorial editor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">createTut</span> <span class="o">=</span> <span class="n">CreateTutorial</span><span class="p">(</span><span class="n">win</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="n">win</span><span class="o">.</span><span class="n">save</span><span class="p">,</span>                                    <span class="n">tutorialFolder</span><span class="o">=</span><span class="s">&#39;testTutorials&#39;</span><span class="p">,</span>                                    <span class="n">readonly</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">createTut</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>openFunction</em>, <em>saveFunction</em>, <em>tutorialFolder=None</em>, <em>readonly=False</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Argument</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>openFunction</td>
+<td>Function used to open saved session of a program
+through calling openFunction([filePath])</td>
+</tr>
+<tr class="row-odd"><td>saveFunction</td>
+<td>Function used to save a session of a program
+through calling saveFunction([filePath])</td>
+</tr>
+<tr class="row-even"><td>[OPTIONAL]</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>tutorialFolder</td>
+<td>Root directory of the tutorial files</td>
+</tr>
+<tr class="row-even"><td>readonly</td>
+<td>[True/False]
+True: tutorials within [tutorialFolder]
+cannot be modified</td>
+</tr>
+<tr class="row-odd"><td>parent</td>
+<td>Parent of this QWidget</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.closeEvent">
+<code class="descname">closeEvent</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>deactivate current widget when widget is closed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path</em>, <em>rootDir</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a saved tutorial for editing</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.new">
+<code class="descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>start new tutorial (delete old tabs)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.removeTab">
+<code class="descname">removeTab</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.removeTab" title="Permalink to this definition">¶</a></dt>
+<dd><p>remove a step of the tutorial</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.CreateTutorial.CreateTutorial.save">
+<code class="descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.CreateTutorial.CreateTutorial.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>save this tutorial to file</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-interactiveTutorial.RunTutorial">
+<span id="interactivetutorial-runtutorial-module"></span><h2>interactiveTutorial.RunTutorial module<a class="headerlink" href="#module-interactiveTutorial.RunTutorial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial">
+<em class="property">class </em><code class="descclassname">interactiveTutorial.RunTutorial.</code><code class="descname">RunTutorial</code><span class="sig-paren">(</span><em>path</em>, <em>openFunction</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtGui.QWidget</span></code>, <code class="xref py py-class docutils literal"><span class="pre">interactiveTutorial._TutorialBase.TutorialBase</span></code></p>
+<p>Always-on-top-window to control (Restart, Next, Previous)
+the chosen tutorial</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">_TestProgram</span> <span class="kn">import</span> <span class="n">TestProgram</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([])</span>
+</pre></div>
+</div>
+<p>Our test gui:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">win</span> <span class="o">=</span> <span class="n">TestProgram</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>First tutorial file in tutorial folder:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">PathStr</span><span class="p">(</span><span class="s">&#39;testTutorials&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tut_file</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">listdir</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The Tutorial widget:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tut</span> <span class="o">=</span> <span class="n">RunTutorial</span><span class="p">(</span><span class="n">tut_file</span><span class="p">,</span> <span class="n">win</span><span class="o">.</span><span class="n">open</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tut</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>path</em>, <em>openFunction</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Argument</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>path</td>
+<td>Path of the tutorial file to open</td>
+</tr>
+<tr class="row-odd"><td>openFunction</td>
+<td>Function used to open saved session of a program
+through calling openFunction([filePath])</td>
+</tr>
+<tr class="row-even"><td>[OPTIONAL]</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>parent</td>
+<td>Parent of this QWidget</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.closeEvent">
+<code class="descname">closeEvent</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.nextStep">
+<code class="descname">nextStep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.nextStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>go to the next tutorial step</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.previousStep">
+<code class="descname">previousStep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.previousStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>go one step back in the tutorial</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.restart">
+<code class="descname">restart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>restart the tutorial</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.RunTutorial.RunTutorial.unpackFile">
+<code class="descname">unpackFile</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.RunTutorial.RunTutorial.unpackFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>unpack [path].pyz file to 
+path should be PYZ file with the following content:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">File</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tutorial.txt</td>
+<td>stores widget positions and tutorial texts</td>
+</tr>
+<tr class="row-odd"><td>session.pyz</td>
+<td>the initial session from where the tutorial
+starts [optional]
+if this file is not given the tutorial starts
+with a new session</td>
+</tr>
+<tr class="row-even"><td>end.pyz</td>
+<td>TODO: the final state of the tutorial</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-interactiveTutorial.TutorialMenu">
+<span id="interactivetutorial-tutorialmenu-module"></span><h2>interactiveTutorial.TutorialMenu module<a class="headerlink" href="#module-interactiveTutorial.TutorialMenu" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="interactiveTutorial.TutorialMenu.TutorialMenu">
+<em class="property">class </em><code class="descclassname">interactiveTutorial.TutorialMenu.</code><code class="descname">TutorialMenu</code><span class="sig-paren">(</span><em>tutorialFolder</em>, <em>openFunction</em>, <em>saveFunction</em>, <em>title='Tutorial'</em>, <em>readonly=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.TutorialMenu.TutorialMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">PyQt4.QtGui.QMenu</span></code></p>
+<blockquote>
+<div>A QMenu containing</div></blockquote>
+<ul class="simple">
+<li>&#8216;Run&#8217; - listing all saved tutorials to run</li>
+<li>&#8216;Create/Edit&#8217; - open the tutorial editor</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">_TestProgram</span> <span class="kn">import</span> <span class="n">TestProgram</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([])</span>
+</pre></div>
+</div>
+<p>Our test gui:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">win</span> <span class="o">=</span> <span class="n">TestProgram</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Add a tutorial menu the the menubar of our gui: 
+[Note: If you use this within a class you have to attach the menu to e.g. self!]</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">menu</span> <span class="o">=</span> <span class="n">TutorialMenu</span><span class="p">(</span> <span class="n">tutorialFolder</span><span class="o">=</span><span class="s">&#39;testTutorials&#39;</span><span class="p">,</span>                             <span class="n">openFunction</span><span class="o">=</span><span class="n">win</span><span class="o">.</span><span class="n">open</span><span class="p">,</span>                             <span class="n">saveFunction</span><span class="o">=</span><span class="n">win</span><span class="o">.</span><span class="n">save</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">win</span><span class="o">.</span><span class="n">menuBar</span><span class="p">()</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span> 
+<span class="go">0</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="interactiveTutorial.TutorialMenu.TutorialMenu.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>tutorialFolder</em>, <em>openFunction</em>, <em>saveFunction</em>, <em>title='Tutorial'</em>, <em>readonly=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.TutorialMenu.TutorialMenu.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Argument</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tutorialFolder</td>
+<td>Root directory of the tutorial files</td>
+</tr>
+<tr class="row-odd"><td>openFunction</td>
+<td>Function used to open saved session of a program
+through calling openFunction([filePath])</td>
+</tr>
+<tr class="row-even"><td>saveFunction</td>
+<td>Function used to save a session of a program
+through calling saveFunction([filePath])</td>
+</tr>
+<tr class="row-odd"><td>[OPTIONAL]</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>title</td>
+<td>the name of the QMenu</td>
+</tr>
+<tr class="row-odd"><td>readonly</td>
+<td>[True/False]
+True: tutorials within [tutorialFolder]
+cannot be modified</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.TutorialMenu.TutorialMenu.createTutorial">
+<code class="descname">createTutorial</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.TutorialMenu.TutorialMenu.createTutorial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close old tutorial and open tutorial editor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="interactiveTutorial.TutorialMenu.TutorialMenu.runTutorial">
+<code class="descname">runTutorial</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#interactiveTutorial.TutorialMenu.TutorialMenu.runTutorial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close old and run a new tutorial</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to interactiveTutorial’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Karl Bedrich.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
