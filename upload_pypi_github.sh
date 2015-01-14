@@ -24,7 +24,7 @@ sphinx-apidoc -A "Karl Bedrich" -f -M -o doc interactiveTutorial
 
 cd doc/_build
 
-git clone https://github.com/radjkarl/fancywidgets.git gh-pages
+git clone https://github.com/radjkarl/interactiveTutorial.git gh-pages
 
 rm -r -f html
 mv gh-pages html
