@@ -7,6 +7,11 @@ Based on `PyQt4 <http://www.riverbankcomputing.co.uk/software/pyqt/download>`_.
 - Fork the code on `github <https://github.com/radjkarl/interactiveTutorial>`_
 
 
+.. image:: https://raw.githubusercontent.com/radjkarl/interactiveTutorial/master/interactiveTutorial_showcase.png
+    :align: center
+    :alt: showcase
+
+
 Installation
 ^^^^^^^^^^^^
 

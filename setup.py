@@ -14,7 +14,6 @@ import interactiveTutorial as package
 
 from setuptools import setup, find_packages
 import os
-import sys
 
 def read(*paths):
 	"""Build a file path from *paths* and return the contents."""
@@ -33,8 +32,22 @@ setup(
 	author_email	= package.__email__,
 	url				= package.__url__,
 	license			= package.__license__,
-	install_requires= package.__depencies__,
-	classifiers		= package.__classifiers__,
+	install_requires= [
+        "fancytools>=0.2.0",
+        'fancywidgets>=0.1.0',
+        #"PyQt4"
+    ],
+	classifiers		= [
+        'Development Status :: 3 - Alpha',
+        'Environment :: X11 Applications :: Qt',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'Intended Audience :: Other Audience',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        ],
 	description		= package.__doc__,
 	packages		= find_packages(exclude=['tests*']),
 	include_package_data=True,
