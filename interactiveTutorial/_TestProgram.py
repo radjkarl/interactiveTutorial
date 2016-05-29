@@ -52,7 +52,7 @@ class TestProgram(QtGui.QMainWindow):
         
         
     def save(self, fname=None):
-        if fname == None:
+        if fname is None:
             fname = QtGui.QFileDialog.getSaveFileName()
         if fname:
             l = {}
@@ -67,7 +67,7 @@ class TestProgram(QtGui.QMainWindow):
 
 
     def open(self, fname=None):
-        if fname == None:
+        if fname is None:
             fname = QtGui.QFileDialog.getOpenFileName()
         if fname:    
             with open(fname, 'r') as f:

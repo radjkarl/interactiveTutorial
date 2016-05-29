@@ -111,8 +111,11 @@ class TutorialBase(object):
                     self.chosenItem.setData(0, MyBorderRole, None)
             #ALL OTHER WIDGETS
             else:
-                if hasattr(widget, '_lastStylesheet'):
-                    widget.setStyleSheet(widget._lastStylesheet)    
+                try:
+                    if hasattr(widget, '_lastStylesheet'):
+                        widget.setStyleSheet(widget._lastStylesheet)    
+                except RuntimeError:
+                    pass #wrapped C/C++ object of type ### has been deleted
 
 
     def getWidgetFromPosition(self, position):
@@ -142,6 +145,7 @@ class TutorialBase(object):
 
             for clsname, layoutpos in indices[2:]:
                 found = False
+                n = 0
                 for ch in widget.children():
                     #1. find widgets of the same class name
                     if ch.__class__.__name__ == clsname:
@@ -149,10 +153,14 @@ class TutorialBase(object):
                         if callable(layout):
                             layout = layout()
                         #2. now check whether the position within the parent layout is the same
-                        if ch.isVisible() and (layoutpos == None or layout.indexOf(ch) == layoutpos):
+                        if (ch.isVisible() and 
+                        (layoutpos == None or layout.indexOf(ch) == layoutpos) 
+                        or n == layoutpos):
                             widget = ch
                             found = True
                             break
+                        n += 1
+
                 if not found:
                     print "couldn't load widget. Did you follow all previous steps?"
                     self.chosenWidget = None

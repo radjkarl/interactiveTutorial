@@ -38,6 +38,9 @@ setup(
 	description		= package.__doc__,
 	packages		= find_packages(exclude=['tests*']),
 	include_package_data=True,
+    package_data={
+      '': ['*.pdf'],
+   },
 	scripts			= [] if not os.path.exists('bin') else [
 						os.path.join('bin',x) for x in os.listdir('bin')],
 	long_description=(

@@ -3,6 +3,8 @@ import pprint
 import tempfile
 from zipfile import ZipFile
 
+import os
+
 from fancywidgets.pyQtBased.FwTabWidget import FwTabWidget 
 from fancywidgets.pyQtBased.FwMinimalTextEditor import FwMinimalTextEditor 
 from fancywidgets.pyQtBased.Dialogs import Dialogs
@@ -10,6 +12,9 @@ from fancywidgets.pyQtBased.Dialogs import Dialogs
 from fancytools.os.PathStr import PathStr
 #own
 from _TutorialBase import TutorialBase
+
+
+HELP_FILE = PathStr(__file__).dirname().join('GUIDE.pdf')
 
 
 
@@ -53,7 +58,6 @@ class CreateTutorial(QtGui.QWidget):
                          cannot be modified
         parent           Parent of this QWidget
         ===============  ===============================================
-         
         '''
         QtGui.QWidget.__init__(self, parent)
         
@@ -65,6 +69,8 @@ class CreateTutorial(QtGui.QWidget):
         self.resize(570,600)
         
         layout = QtGui.QHBoxLayout()
+        layout.setContentsMargins(0, 0, 0, 0)
+
         self.setLayout(layout)
 
         leftlayout = QtGui.QVBoxLayout()
@@ -74,9 +80,11 @@ class CreateTutorial(QtGui.QWidget):
         btn_save.clicked.connect(self.save)
         self.edit_name = QtGui.QLineEdit()
         self.edit_name.setPlaceholderText('NEW_TUTORIAL.pyz')
+
         savelayout = QtGui.QHBoxLayout()
         savelayout.addWidget(btn_save)
-        savelayout.addWidget(self.edit_name)
+        savelayout.addWidget(self.edit_name,1)
+
         #TUTORIALS STEPS
         self.tabs = FwTabWidget()
         self.tabs.removeTab = self.removeTab
@@ -161,12 +169,13 @@ class CreateTutorial(QtGui.QWidget):
         with ZipFile(path,'w') as zipFile:
             tdir = PathStr(tempfile.mkdtemp('%s_tutorial'))
             pp = pprint.PrettyPrinter(indent=4)
+            #tutorial instructions:
             tutfile = tdir.join('tutorial.txt')
             with open(tutfile ,'w') as f:
                 f.write(pp.pformat(content))
             zipFile.write(tutfile, 'tutorial.txt')
-            sessionfile = tdir.join('session.pyz')
-            #ALSO SAVE SESSION
+            #session:
+            sessionfile = tdir.join('session')
             self.saveFunction(sessionfile)
             zipFile.write(sessionfile, 'session.pyz')
    
@@ -219,7 +228,7 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
         layout = QtGui.QVBoxLayout()
         self.setLayout(layout)
         
-        self.btn_setWidget = QtGui.QPushButton('set widget [right click]')
+        self.btn_setWidget = QtGui.QPushButton('Set widget [right click]')
         self.btn_setWidget.clicked.connect(self.chooseWidget)
         
         self.btn_setWidgetDone = QtGui.QPushButton('Done')
@@ -229,7 +238,7 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
 
         self.editor_text = FwMinimalTextEditor()
         
-        self.btn_next = QtGui.QPushButton('Next')
+        self.btn_next = QtGui.QPushButton('Next step')
         self.btn_next.clicked.connect(lambda: tutWindow.tabs.addEmptyTab(
                                             str(tutWindow.tabs.count()+1)))
            
@@ -276,6 +285,8 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
         called then the focus on a widget changed
         old - last widget on focus
         new - current widget on focus
+        
+        doesn't work on QMenu at the moment
         '''
         if new:
             #new can be a widget which is now in focus
@@ -288,7 +299,10 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
                 newWin = p  
             # 1. restore last window mouse click event
             if old == self.mainWindow:
-                old.mousePressEvent = self.origPressEvent
+                try:
+                    old.mousePressEvent = self.origPressEvent
+                except AttributeError:
+                    return
             # 2. widget doesn't belong to tutorial:
             if newWin != self.tutWindow:
             # 3. init new window mouse click event
@@ -359,7 +373,7 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
                 if callable(layout):
                     layout = layout()
                 #position within parent widget: (class_name, position in .layout() )
-                pos.append((child.__class__.__name__, layout.indexOf(child) if layout else None))                
+                pos.append((child.__class__.__name__, layout.indexOf(child) if layout is not None else None))                
                 child = p
             pos.append(unicode(child.__class__.__name__))
             pos.append(unicode(child.windowTitle()))
@@ -373,7 +387,7 @@ class _TutorialStep(QtGui.QWidget, TutorialBase):
             row_indices = []
             while True:
                 p = item.parent()
-                if p == None:
+                if p is None:
                     break
                 row_indices.append(p.indexOfChild(item))
                 item = p
@@ -395,6 +409,7 @@ class _SavedTutorials(QtGui.QWidget):
         self.dialogs = Dialogs()
         
         layout = QtGui.QVBoxLayout()
+        #layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout) 
         #BUTTONS
         change = QtGui.QPushButton('Change')
@@ -406,9 +421,21 @@ class _SavedTutorials(QtGui.QWidget):
         self.tutDir.setReadOnly(True)
         
         self.tree =  _TutorialTree(master, readonly)
+        tl = QtGui.QHBoxLayout()
+        tl.setContentsMargins(0, 0, 0, 0)
+        tl.setSpacing(0)
         
-        layout.addWidget(QtGui.QLabel('Root directory'))  
-        layout.addWidget(self.tutDir)  
+        tl.addWidget(QtGui.QLabel('Root directory'),1) 
+        
+        btnHelp = QtGui.QPushButton('Help')
+        btnHelp.setStyleSheet( " QPushButton {text-decoration: underline color black} ")
+        btnHelp.setFlat(True)
+        btnHelp.clicked.connect(self._showHelp)
+        btnHelp.setFixedWidth(40)
+        
+        layout.addWidget(btnHelp, 0, QtCore.Qt.AlignRight) 
+        layout.addLayout(tl)
+        tl.addWidget(self.tutDir)  
         layout.addWidget(change) 
         layout.addWidget(self.tree) 
         layout.addWidget(new) 
@@ -417,12 +444,14 @@ class _SavedTutorials(QtGui.QWidget):
         if self.dirname:
             self.changeDir(self.dirname)
 
+    def _showHelp(self):
+        os.startfile(HELP_FILE)
 
     def changeDir(self, dirname=None):
         '''
         change the root directory containing the tutorials
         '''
-        if dirname == None:
+        if dirname is None:
             dirname = self.dialogs.getExistingDirectory()
         if dirname:
             self.dirname = dirname
@@ -530,14 +559,18 @@ class _TutorialTree(QtGui.QTreeView):
         delete file/folder is [Del] is pressed
         '''
         if event.matches(QtGui.QKeySequence.Delete):
-            #ARE YOU SURE?
-            msgBox = QtGui.QMessageBox()
-            msgBox.setText("Are you sure?")
-            msgBox.addButton('Yes', QtGui.QMessageBox.YesRole)
-            msgBox.addButton('No', QtGui.QMessageBox.RejectRole)
-            ret = msgBox.exec_()
-            if ret == 0:#YES
-                self.fmodel.remove(self.currentIndex())
+            self.deleteCurrentTutorial()
+            
+            
+    def deleteCurrentTutorial(self):
+        #ARE YOU SURE?
+        msgBox = QtGui.QMessageBox()
+        msgBox.setText("Are you sure?")
+        msgBox.addButton('Yes', QtGui.QMessageBox.YesRole)
+        msgBox.addButton('No', QtGui.QMessageBox.RejectRole)
+        ret = msgBox.exec_()
+        if ret == 0:#YES
+            self.fmodel.remove(self.currentIndex())
 
 
 
@@ -554,6 +587,8 @@ class _TreeViewContextMenu(QtGui.QMenu):
         self.a_rename = self.addAction('Rename')
         self.a_rename.triggered.connect(lambda:
                         self.tree.openPersistentEditor(self.tree.currentIndex()))
+
+        self.addAction('Delete').triggered.connect(self.tree.deleteCurrentTutorial)
 
 
     def show(self, evt):

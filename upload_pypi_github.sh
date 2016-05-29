@@ -22,7 +22,7 @@ git push origin master # Sends your commits in the "master" branch to GitHub
 
 sphinx-apidoc -A "Karl Bedrich" -f -M -o doc interactiveTutorial
 
-cd doc/_build
+cd doc/api/_build
 
 git clone https://github.com/radjkarl/interactiveTutorial.git gh-pages
 
@@ -48,4 +48,4 @@ git add .
 git commit -a -m 'API updated'
 git push -f origin HEAD:gh-pages 
 
-cd ../../..
+cd ../../../..
