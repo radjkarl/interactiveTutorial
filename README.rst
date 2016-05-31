@@ -2,10 +2,8 @@
 *interactiveTutorial* - fast and easy interactive tutorials for Qt
 ==================================================================
 
-|GPLv3 License|
-|Python 2.6\|2.7|
-.. |GPLv3 License| image:: https://img.shields.io/badge/License-GPLv3-red.svg
-.. |Python 2.6\|2.7| image:: https://img.shields.io/badge/python-2.6%7C2.7-yellow.svg :target: https://www.python.org/
+.. image:: https://img.shields.io/badge/License-GPLv3-red.svg
+.. image:: https://img.shields.io/badge/python-2.6%7C2.7-yellow.svg :target: https://www.python.org/
 
 
 Based on `PyQt4 <http://www.riverbankcomputing.co.uk/software/pyqt/download>`_.
